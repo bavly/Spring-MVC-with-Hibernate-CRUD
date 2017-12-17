@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+
+	<class
+		name="com.entities.Services"
+		table="SERVICES">
+
+		<cache usage="transactional" include="all" />
+
+		<id name="servicesID" column="SERVICESID">
+			<generator class="native" />
+		</id>
+		
+		  <many-to-one name="product" class="com.entities.Products" />
+            <column name="PRODUCTID" not-null="true"  />
+                
+		<property name="name" type="string" column="NAME" />
+		<property name="operatorPackageID" type="string" column="OPERATORPACKAGEID" />
+	
+	</class>
+</hibernate-mapping>

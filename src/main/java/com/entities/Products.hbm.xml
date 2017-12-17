@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+
+	<class
+		name="com.entities.Product"
+		table="PRODUCT">
+
+		<cache usage="transactional" include="all" />
+
+		<id name="productID" column="PRODUCTID">
+			<generator class="native" />
+		</id>
+		<property name="productName" type="string" column="PRODUCTNAME" />
+		<property name="minPrice" type="string" column="MINPRICE" />
+		<property name="maxPrice" type="string" column="MAXPRICE" />
+ 
+		 <set name="ProductServicesID" table="productServicesID"
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUCTID" not-null="true" />
+            </key>
+            <one-to-many class="com.entities.Services" />
+        </set>
+		
+	</class>
+
+</hibernate-mapping>
